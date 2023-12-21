@@ -643,8 +643,8 @@ class GaussianDiffusion:
         #         model_output = model(x = x_t, ts = self._scale_timesteps(t), **model_kwargs)
         #     model_kwargs['self_conditions'] = model_output.detach()        
 
-        target = x_start  # target = z0 即(x0+y0)
-        model_output = model(x_t, self._scale_timesteps(t), **model_kwargs) #model_output就是z0
+        target = x_start  
+        model_output = model(x_t, self._scale_timesteps(t), **model_kwargs) 
         assert model_output.shape == target.shape == x_start.shape
         terms["mse"] = mean_flat((target - model_output) ** 2)
 
